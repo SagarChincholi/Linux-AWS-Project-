@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register — CampusConnect 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page narrow">
+
+  <header class="topbar">
+    <a class="brand" href="index.html">CampusConnect<span class="brand-year">2026</span></a>
+  </header>
+
+  <main class="form-main">
+    <div class="ic-card form-card">
+      <div class="pin-row"></div>
+      <h1>Register</h1>
+      <p class="form-sub">Fill in your details to create your event badge.</p>
+
+      <form action="register.php" method="POST" novalidate>
+
+        <div class="field">
+          <label for="full_name">Full name</label>
+          <input type="text" id="full_name" name="full_name" maxlength="20" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" maxlength="20" required>
+        </div>
+
+        <div class="field">
+          <label for="college_name">College name</label>
+          <input type="text" id="college_name" name="college_name" maxlength="25" required>
+        </div>
+
+        <div class="field">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" maxlength="20" required>
+        </div>
+
+        <div class="field">
+          <label for="event">Event</label>
+          <select id="event" name="event" required>
+            <option value="" disabled selected>Choose an event</option>
+            <option value="Hackathon">Hackathon</option>
+            <option value="Coding Contest">Coding Contest</option>
+            <option value="Tech Quiz">Tech Quiz</option>
+            <option value="Robotics Expo">Robotics Expo</option>
+            <option value="AI Workshop">AI Workshop</option>
+            <option value="Web Dev Bootcamp">Web Dev Bootcamp</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" minlength="6" required>
+        </div>
+
+        <button type="submit" class="btn primary full">Register</button>
+      </form>
+
+      <p class="switch-link">Already registered? <a href="login.html">Log in</a></p>
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

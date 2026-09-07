@@ -1,0 +1,369 @@
+/* CampusConnect 2026
+   Visual concept: a printed circuit board — deep solder-mask green,
+   copper traces, silkscreen text, and chip-style panels. */
+
+:root {
+  --bg-base: #0d1f17;
+  --bg-panel: #12291f;
+  --bg-field: #0a1a13;
+  --copper: #c6813c;
+  --copper-bright: #e2a268;
+  --silk: #e9e6d8;
+  --muted: #93a99c;
+  --trace-teal: #4fd8c4;
+  --error: #e2593a;
+  --line: rgba(198, 129, 60, 0.35);
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(circle at 20px 20px, rgba(79, 216, 196, 0.10) 1.4px, transparent 1.6px),
+    linear-gradient(rgba(198, 129, 60, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198, 129, 60, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 40px 40px;
+  color: var(--silk);
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--trace-teal);
+}
+
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page.narrow {
+  max-width: 520px;
+}
+
+/* Top bar */
+.topbar {
+  padding: 0.5rem 0 2.5rem;
+}
+
+.brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+  color: var(--silk);
+  text-decoration: none;
+}
+
+.brand-year {
+  color: var(--copper-bright);
+  margin-left: 0.35rem;
+}
+
+/* Hero */
+.hero {
+  padding: 1rem 0 3rem;
+  max-width: 640px;
+}
+
+.hero h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: clamp(2.1rem, 5.5vw, 3.2rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  color: var(--silk);
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+/* Nav cards on the homepage */
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.nav-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.nav-card:hover {
+  border-color: var(--copper);
+  box-shadow: 0 0 0 1px var(--copper), 0 12px 24px -16px rgba(198, 129, 60, 0.6);
+  transform: translateY(-2px);
+}
+
+.nav-card h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+  color: var(--silk);
+}
+
+.nav-card p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Generic chip-style panel */
+.ic-card {
+  position: relative;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius) var(--radius) 4px 4px;
+  padding: 1.75rem 1.75rem 1.5rem;
+}
+
+.ic-card::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--copper-bright);
+  box-shadow: 0 0 6px rgba(226, 162, 104, 0.8);
+}
+
+.pin-row {
+  height: 6px;
+  margin: 1.1rem 0 1.4rem;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--copper) 0,
+    var(--copper) 3px,
+    transparent 3px,
+    transparent 9px
+  );
+  opacity: 0.55;
+}
+
+/* Forms */
+.form-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.form-card {
+  width: 100%;
+}
+
+.form-card h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.6rem;
+  margin: 0;
+  color: var(--silk);
+}
+
+.form-sub {
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 1.3rem;
+}
+
+.field label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.field input,
+.field select {
+  background: var(--bg-field);
+  border: none;
+  border-bottom: 2px solid var(--line);
+  color: var(--silk);
+  padding: 0.65rem 0.15rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  border-radius: 3px 3px 0 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--copper) 50%),
+    linear-gradient(135deg, var(--copper) 50%, transparent 50%);
+  background-position: calc(100% - 16px) calc(1.1rem), calc(100% - 11px) calc(1.1rem);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-bottom-color: var(--trace-teal);
+  box-shadow: 0 6px 14px -10px var(--trace-teal);
+}
+
+.field input::placeholder {
+  color: rgba(233, 230, 216, 0.35);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 6px;
+  border: 1px solid var(--copper);
+  background: transparent;
+  color: var(--copper-bright);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--copper);
+  color: var(--bg-base);
+  box-shadow: 0 0 18px rgba(198, 129, 60, 0.4);
+}
+
+.btn.primary {
+  background: var(--copper);
+  color: var(--bg-base);
+}
+
+.btn.primary:hover {
+  box-shadow: 0 0 18px rgba(198, 129, 60, 0.55);
+}
+
+.btn.full {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 1.6rem;
+}
+
+.switch-link {
+  margin-top: 1.4rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Status / result panels (register.php, login.php) */
+.status-card {
+  width: 100%;
+  border-left-width: 4px;
+  border-left-style: solid;
+}
+
+.status-card.success {
+  border-left-color: var(--trace-teal);
+}
+
+.status-card.error {
+  border-left-color: var(--error);
+}
+
+.status-card h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  margin: 0 0 0.6rem;
+}
+
+.status-card.success h1 {
+  color: var(--trace-teal);
+}
+
+.status-card.error h1 {
+  color: var(--error);
+}
+
+.status-card p {
+  color: var(--muted);
+  margin: 0 0 1.2rem;
+}
+
+.badge-details {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  background: var(--bg-field);
+  border-radius: 6px;
+}
+
+.badge-details div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+}
+
+.badge-details dt {
+  color: var(--muted);
+  margin: 0;
+}
+
+.badge-details dd {
+  margin: 0;
+  color: var(--silk);
+  text-align: right;
+}
+
+.error-list {
+  margin: 0 0 1.4rem;
+  padding-left: 1.1rem;
+  color: var(--error);
+}
+
+.error-list li {
+  margin-bottom: 0.4rem;
+}
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  padding-top: 3rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  max-width: 56ch;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .nav-grid {
+    grid-template-columns: 1fr;
+  }
+}
